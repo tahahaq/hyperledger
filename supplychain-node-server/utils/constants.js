@@ -7,7 +7,7 @@ exports.adminUid = 'mulkTc7SiofwGQ7N4fJPIqwyym63';
 // Namespace of the server
 exports.owner_namespace = 'resource:one.timber.supplychain.Trader#';
 // Hyperledger url
-exports.hyperledgerUrl = 'http://104.196.194.55:3000/api/';
+exports.hyperledgerUrl = 'http://104.196.138.50:3000/api/';
 
 
 exports.responseMessages = {

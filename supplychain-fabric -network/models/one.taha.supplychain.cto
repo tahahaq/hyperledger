@@ -1,0 +1,111 @@
+/*
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ * http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+/**
+ * Write your model definitions here
+ */
+
+// Here we are defining the models
+
+namespace one.timber.supplychain
+
+
+asset Pine identified by pine_id {
+  o String pine_id
+  o String location_coordinates
+  o String size
+  o String timestamp
+  o String weight
+  o String color
+  --> Trader owner
+}
+
+asset Wood identified by wood_id {
+  o String wood_id
+  o String location_coordinates
+  o String size
+  o String timestamp
+  o String weight
+  o String color
+  --> Trader owner
+}
+
+asset Timber identified by timber_id {
+  o String timber_id
+  o String location_coordinates
+  o String size
+  o String timestamp
+  o String weight
+  o String color
+  --> Trader owner
+}
+
+abstract participant Trader {
+    o String company
+    o String company_id
+    o String industry_standard_certification
+    o String timestamp
+}
+
+participant Source identified by timber_id extends Trader {
+    o String timber_id
+    o String location_coordinates
+    o String size
+    o String weight
+    o String color
+    o String member_id
+}
+
+participant Shipper identified by timber_id extends Trader{
+    o String batch_id
+    o String quantity
+    o String timber_id
+    o String est_delivery_time
+    o String member_id
+}
+
+participant Designer identified by timber_id extends Trader{
+    o String style_id
+    o String num_of_length
+    o String len_of_each
+    o String size_piece_meter
+    o String batch_id
+    o String timber_id
+    o String est_production_time
+    o String member_id
+}
+
+participant Packager identified by timber_id extends Trader {
+    o String num_of_length
+    o String len_of_each
+    o String size_piece_meter
+    o String batch_id
+    o String timber_id
+    o String member_id
+}
+
+transaction transfer_timber{
+    o String timber_id
+    --> Trader new_owner
+}
+
+transaction transfer_wood{
+    o String wood_id
+    --> Trader new_owner
+}
+
+transaction transfer_pine{
+    o String pine_id
+    --> Trader new_owner
+}
